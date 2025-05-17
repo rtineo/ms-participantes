@@ -6,7 +6,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 import com.ms.participantes.dto.EventoRequest;
 
-@FeignClient(name = "eventos", url = "http://localhost:9081") // URL del microservicio de eventos
+@FeignClient(name = "eventos", url = "http://ms-eventos:9081") // URL del microservicio de eventos
 public interface EventoClient { 
      
 

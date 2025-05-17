@@ -1,4 +1,6 @@
 spring:
+  application:
+    name: ms-participantes
   datasource:
     url: jdbc:oracle:thin:@dki-oradb:1521/XEPDB1
     username: inscrip_admin
