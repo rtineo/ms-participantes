@@ -1,0 +1,22 @@
+--restman extension de chrome:
+https://chromewebstore.google.com/detail/restman/ihgpcfpkpmdcghlnaofdmjkoemnlijdi
+
+--RESTS:
+GET Consultar por evento:
+http://localhost:9081/api2/eventos/1
+
+
+GET Inscripciones por participante: http://localhost:9091/api2/inscripciones/3
+
+POST Inscripciones:
+http://localhost:9091/api2/inscripciones
+Json Body:
+{
+    "idParticipante":3,
+    "idEvento":2
+}
+Header:
+Content-Type: application/json
+
+
+
