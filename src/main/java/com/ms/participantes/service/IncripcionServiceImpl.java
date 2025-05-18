@@ -7,6 +7,7 @@ import com.ms.participantes.entities.Inscripcion;
 import com.ms.participantes.repository.InscripcionRepository;
 import com.ms.participantes.repository.ParticipanteRepository;
 import com.ms.participantes.dto.EventoRequest;
+import com.ms.participantes.excepciones.ParticipanteException;
 import java.util.List;
 
 import feign.FeignException;
@@ -26,7 +27,7 @@ public class IncripcionServiceImpl implements InscripcionService{
 
     public Inscripcion inscribir(Long idParticipante, Long idEvento) {
         if (!participanteRepo.existsById(idParticipante)) {
-            throw new IllegalArgumentException("Participante no existe");
+            throw new ParticipanteException("Participante no existe");
         } 
 
         try {
@@ -36,17 +37,17 @@ public class IncripcionServiceImpl implements InscripcionService{
             if(eventoEncontrado != null){
                 int inscritos = inscripcionRepo.countByIdEvento(idEvento);
                 if (inscritos >= eventoEncontrado.getCapacidad()) {
-                    throw new RuntimeException("No hay vacantes para este evento");
+                    throw new ParticipanteException("No hay vacantes para este evento");
                 }
             }
         } catch (FeignException.NotFound e) {
-            throw new IllegalArgumentException("Evento no existe");
+            throw new ParticipanteException("Evento no existe");
         }
 
 
         // Verificar si ya existe la inscripción
         if (inscripcionRepo.existsByIdParticipanteAndIdEvento(idParticipante, idEvento)) {
-            throw new RuntimeException("Participante ya inscrito en este evento");
+            throw new ParticipanteException("Participante ya inscrito en este evento");
         }
 
         Inscripcion inscripcion = new Inscripcion();
