@@ -14,7 +14,7 @@ import com.ms.participantes.dto.InscripcionRequest;
 import org.springframework.web.bind.annotation.PathVariable;
 
 @RestController
-@RequestMapping("/api2/inscripciones")
+@RequestMapping("/inscripciones")
 public class InscripcionController {
     private final InscripcionService inscripcionService;
 
